@@ -26,55 +26,28 @@ def rps():
     computerWins = 0
     draws = 0
 
+    options = ["Rock", "Paper", "Scissors"]
+
+
     
     while count <= numberOfRounds:
-        computerPlayed = random.randint(1,3)
+        computerPlayed = random.randint(0,2)
         print("\nRound:", count)
         played = turnPlayed()
-        if played == 1:
-            print("You played Rock")
-            if computerPlayed == 1:
-                print("Computer played Rock")
-                draws += 1
-                print("This round was a Draw")
-            elif computerPlayed == 2:
-                print("Computer played Paper")
-                computerWins += 1
-                print("Computer won this round")
-            elif computerPlayed == 3:
-                print("Computer Played Scissors")
-                playerWins += 1
-                print("You won this round")
-        
-        elif played == 2:
-            print("You played Paper")
-            if computerPlayed == 2:
-                print("Computer played Paper")
-                draws += 1
-                print("This round was a Draw")
-            elif computerPlayed == 3:
-                print("Computer Played Scissors")
-                computerWins += 1
-                print("Computer won this round")
-            elif computerPlayed == 1:
-                print("Computer played Rock")
-                playerWins += 1
-                print("You won this round")
 
-        elif played == 3:
-            print("You played Scissors")
-            if computerPlayed == 3:
-                print("Computer Played Scissors")
-                draws += 1
-                print("This round was a Draw")
-            elif computerPlayed == 1:
-                print("Computer played Rock")
-                computerWins += 1
-                print("Computer won this round")
-            elif computerPlayed == 2:
-                print("Computer played Paper")
-                playerWins += 1
-                print("You won this round")
+        print("You played", options[played], " and Computer played", options[computerPlayed])
+
+        if (played == 0 and computerPlayed == 2) or (played == 1 and computerPlayed == 0) or (played == 2 and computerPlayed == 1):
+            playerWins += 1
+            print("You won this round!")
+
+        elif played == computerPlayed:
+            draws += 1
+            print("This round was a Draw.")
+
+        else:
+            computerWins += 1
+            print("Computer won this round!")
 
         count += 1
         print("\nYour wins:", playerWins, "Computer wins:", computerWins, "Number of Draws:", draws)
@@ -95,10 +68,6 @@ def rps():
     else:
         print("\nThank You for Playing")
         quit()
-
-    
-    
-
 
 
 def noOfRounds():
@@ -123,7 +92,7 @@ def turnPlayed():
             if x <= 0 or x > 3:
                 x = input("Please enter integer value only between 1 - 3:\n1 : Rock\n2 : Paper\n3 : Scissors\n")
             else:
-                return x
+                return x-1
 
 
 rps()
