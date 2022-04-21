@@ -6,10 +6,10 @@ from collections import defaultdict
 
 def quizGame():
     questions = defaultdict(list)
-    questions = {1: ["What is the full form of CPU?", "Central Processing Unit"], 
-    2: ["What is the full form of GPU?", "Graphical Processing Unit"], 
-    3: ["What is the full form of RAM", "Random Access Memory"], 
-    4: ["What is the full form of PSU", "Power Supply Unit"]}
+    questions = {1: ["What is the full form of CPU?", "Central Processing Unit", 1], 
+    2: ["What is the full form of GPU?", "Graphical Processing Unit", 2], 
+    3: ["What is the full form of RAM?", "Random Access Memory", 3], 
+    4: ["What is the full form of PSU?", "Power Supply Unit", 1]}
 
     listOfQuestions = [i+1 for i in range(len(questions))]
 
@@ -25,6 +25,7 @@ def quizGame():
 
     correct = 0
     incorrect = 0
+    score = 0
 
     for i in listOfQuestions:
         
@@ -33,9 +34,10 @@ def quizGame():
 
         if answer.lower() == questions[i][1].lower():
             time.sleep(1)
-            print("\nYour answer is Correct!\nYou Earned 1 Point")
             correct += 1
-            print("Your Current Score is " + str(correct)+"\n")
+            score += questions[i][2]
+            print("\nYour answer is Correct!\nYou Earned", questions[i][2] ,"Points")
+            print("Your Current Score is", score,"\n")
             time.sleep(1)
 
         else:
@@ -47,8 +49,8 @@ def quizGame():
 
     time.sleep(1)
 
-    print("\nYour Final Score is " + str(correct))
-    print("You gave " + str(incorrect) + " incorrect out of " + str(numberOfQuestions) + " questions.")
+    print("\nYour Final Score is", score)
+    print("You gave", correct, "correct and", incorrect, "incorrect out of", numberOfQuestions, "questions.")
     print("Your Percentage: " + str((correct/numberOfQuestions)*100) + "%.")
 
     again = input("\nWould you like to play again? Y/N \n")
@@ -63,7 +65,7 @@ def quizGame():
 
 
 def noOfQuestions(totalQuestions):
-    x = input("How many questions you want to play out of "+ str(totalQuestions) + " questions?\n")
+    x = input("How many questions you want to play out of " + str(totalQuestions) + " questions?\n")
     
     
     while True:
